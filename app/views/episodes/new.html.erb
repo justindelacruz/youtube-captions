@@ -1,0 +1,5 @@
+<h2>Add an <%= @channel.name %> episode</h2>
+
+<%= render 'form' %>
+
+<%= link_to("Back to #{@channel.name} episodes", source_channel_episodes_path(@source, @channel, @episodes)) %>

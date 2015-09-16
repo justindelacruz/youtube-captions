@@ -1,0 +1,5 @@
+<h2>Add a channel for <%= @source.name %></h2>
+
+<%= render 'form' %>
+
+<%= link_to("Back to #{@source.name} channels", source_channels_path(@source)) %>

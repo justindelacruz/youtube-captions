@@ -1,0 +1,22 @@
+<h2>Channel for <%= @source.name %></h2>
+<p>
+  <strong>Name:</strong>
+  <%= @channel.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @channel.slug %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= @channel.image %>
+</p>
+
+<p>
+  <strong>Episodes:</strong>
+  <%= link_to('View Episodes', source_channel_episodes_path(@source, @channel)) %>
+</p>
+
+<%= link_to('Back to Channel Listing', source_channels_path(@source)) %>

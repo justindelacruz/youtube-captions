@@ -1,0 +1,45 @@
+<%= form_for([@source, @channel, @episode]) do |f| %>
+
+    <% if @episode.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@episode.errors.count, "error") %> prohibited
+            this article from being saved:
+          </h2>
+          <ul>
+            <% @episode.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <p>
+      <%= f.label :name %><br />
+      <%= f.text_field :name, value: @episode.name %>
+    </p>
+
+    <p>
+      <%= f.label :slug %><br />
+      <%= f.text_field :slug, value: @episode.slug %>
+    </p>
+
+    <p>
+      <%= f.label :image %><br />
+      <%= f.text_field :image, value: @episode.image  %>
+    </p>
+
+    <p>
+      <%= f.label :date_created %><br />
+      <%= f.text_field :date_created, value: @episode.date_created %>
+    </p>
+
+    <p>
+      <%= f.label :description %><br />
+      <%= f.text_area :description, value: @episode.description %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

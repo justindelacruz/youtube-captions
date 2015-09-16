@@ -1,0 +1,11 @@
+<h2>Channels for <%= @source.name %></h2>
+<p>
+    <%= link_to 'Create new channel', new_source_channel_path(@source) %>
+</p>
+
+<%= render @channels %>
+
+<p>
+  <%= link_to "Back to #{@source.name} info", source_path(@source) %>
+</p>
+

@@ -1,0 +1,14 @@
+<h2>Id: <%= episode.id %></h2>
+<ul>
+  <li>Name: <%= episode.name %></li>
+  <li>Slug: <%= episode.slug %></li>
+  <li>Image: <%= episode.image %></li>
+  <li>Date created: <%= episode.date_created %></li>
+  <li>Description: <%= episode.description %></li>
+  <li><%= link_to 'Show', source_channel_episode_path(episode.channel.source, episode.channel, episode) %></li>
+  <li><%= link_to 'Edit', edit_source_channel_episode_path(episode.channel.source, episode.channel, episode) %></li>
+  <li><%= link_to 'Destroy', source_channel_episode_path(episode.channel.source, episode.channel, episode),
+                   method: :delete,
+                   data: { confirm: 'Are you sure?'} %>
+  </li>
+</ul>

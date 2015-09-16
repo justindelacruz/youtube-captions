@@ -1,0 +1,20 @@
+<h2>Id: <%= caption.id %></h2>
+<ul>
+  <li><pre><%= caption.text %></pre></li>
+  <li>Start Time: <%= caption.start_time %></li>
+  <li>End Time: <%= caption.end_time %></li>
+  <li><%= link_to 'Edit', edit_source_channel_episode_caption_path(
+                                caption.episode.channel.source,
+                                caption.episode.channel,
+                                caption.episode,
+                                caption
+                        ) %></li>
+  <li><%= link_to 'Destroy', source_channel_episode_caption_path(
+                                   caption.episode.channel.source,
+                                   caption.episode.channel,
+                                   caption.episode,
+                                   caption),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?'} %>
+  </li>
+</ul>
