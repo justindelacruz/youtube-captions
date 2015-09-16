@@ -4,7 +4,7 @@ class SourcesController < ApplicationController
   end
 
   def show
-    @source = Source.find(params[:id])
+    @source = Source.find_by slug: params[:slug]
   end
 
   def new
@@ -12,7 +12,7 @@ class SourcesController < ApplicationController
   end
 
   def edit
-    @source = Source.find(params[:id])
+    @source = Source.find_by slug: params[:slug]
   end
 
   def create
@@ -26,17 +26,17 @@ class SourcesController < ApplicationController
   end
 
   def update
-    @article = Article.find(params[:id])
+    @source = Source.find_by slug: params[:slug]
 
-    if @article.update(article_params)
-      redirect_to @article
+    if @source.update(source_params)
+      redirect_to @source
     else
       render 'edit'
     end
   end
 
   def destroy
-    @source = Source.find(params[:id])
+    @source = Source.find_by slug: params[:slug]
     @source.destroy
 
     redirect_to sources_path

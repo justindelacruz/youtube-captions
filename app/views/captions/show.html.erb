@@ -1,0 +1,7 @@
+<h2><%= @source.name %> &gt; <%= @channel.name %> &gt; <%= @episode.name %> &gt; <%= @caption.id %></h2>
+
+<%= render(@caption) %>
+
+<p>
+    <%= link_to('Back', source_channel_episode_captions_path(@source, @channel, @episode)) %>
+</p>

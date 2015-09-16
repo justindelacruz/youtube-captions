@@ -1,14 +1,32 @@
-<h2>Id: <%= episode.id %></h2>
-<ul>
-  <li>Name: <%= episode.name %></li>
-  <li>Slug: <%= episode.slug %></li>
-  <li>Image: <%= episode.image %></li>
-  <li>Date created: <%= episode.date_created %></li>
-  <li>Description: <%= episode.description %></li>
-  <li><%= link_to 'Show', source_channel_episode_path(episode.channel.source, episode.channel, episode) %></li>
-  <li><%= link_to 'Edit', edit_source_channel_episode_path(episode.channel.source, episode.channel, episode) %></li>
-  <li><%= link_to 'Destroy', source_channel_episode_path(episode.channel.source, episode.channel, episode),
+<hr>
+
+<p>
+  <b>Name:</b> <%= episode.name %>
+</p>
+
+<p>
+  <b>Slug:</b> <%= episode.slug %>
+</p>
+
+<p>
+  <b>Image:</b> <%= episode.image %>
+</p>
+
+<p>
+  <b>Date created:</b> <%= episode.date_created %>
+</p>
+
+<p>
+  <b>Description:</b> <%= episode.description %>
+</p>
+
+<p>
+  <b>Captions</b>:
+  <%= link_to('View', source_channel_episode_captions_path(episode.channel.source, episode.channel, episode)) %>
+</p>
+
+<%= link_to 'Show', source_channel_episode_path(episode.channel.source, episode.channel, episode) %> |
+<%= link_to 'Edit', edit_source_channel_episode_path(episode.channel.source, episode.channel, episode) %> |
+<%= link_to 'Destroy', source_channel_episode_path(episode.channel.source, episode.channel, episode),
                    method: :delete,
                    data: { confirm: 'Are you sure?'} %>
-  </li>
-</ul>

@@ -1,0 +1,27 @@
+<hr>
+
+<p>
+  <strong>Name:</strong>
+  <%= source.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= source.slug %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= source.image %>
+</p>
+
+<p>
+  <strong>Channels:</strong>
+  <%= link_to 'View Channels', source_channels_path(source) %>
+</p>
+
+<%= link_to 'Show', source_path(source) %> |
+<%= link_to 'Edit', edit_source_path(source) %> |
+<%= link_to 'Destroy', source_path(source),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>

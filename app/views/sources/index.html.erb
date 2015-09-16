@@ -4,24 +4,4 @@
   <%= link_to 'Create new source', new_source_path %>
 </p>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Slug</th>
-    <th>Image</th>
-    <th colspan="3"></th>
-  </tr>
-
-  <% @sources.each do |source| %>
-      <tr>
-        <td><%= source.name %></td>
-        <td><%= source.slug %></td>
-        <td><%= source.image %></td>
-        <td><%= link_to 'Show', source_path(source) %></td>
-        <td><%= link_to 'Edit', edit_source_path(source) %></td>
-        <td><%= link_to 'Destroy', source_path(source),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-  <% end %>
-</table>
+<%= render @sources %>

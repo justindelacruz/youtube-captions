@@ -7,4 +7,8 @@ class Episode < ActiveRecord::Base
   validates :date_created, presence: true
   validates_date :date_created, on_or_before: :today
   validates_uniqueness_of :slug
+
+  def to_param
+    slug
+  end
 end

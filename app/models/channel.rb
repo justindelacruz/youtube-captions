@@ -5,4 +5,8 @@ class Channel < ActiveRecord::Base
   validates :name, presence: true
   validates :slug, presence: true
   validates_uniqueness_of :slug
+
+  def to_param
+    slug
+  end
 end

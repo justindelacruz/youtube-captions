@@ -1,11 +1,11 @@
-<h2>Episodes for <%= @channel.name %>: <%= @episode.name %></h2>
+<h2><%= @source.name %> &gt; <%= @channel.name %> &gt; <%= @episode.name %>: Captions</h2>
 
 <p>
   <%= link_to 'Create new caption', new_source_channel_episode_caption_path(@source, @channel, @episode) %>
 </p>
 
-<%= render @captions %>
-
 <p>
   <%= link_to "Back to #{@episode.name} info", source_channel_episode_path(@source, @channel, @episode) %>
 </p>
+
+<%= render @captions %>

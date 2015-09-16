@@ -1,18 +1,27 @@
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Slug</th>
-    <th>Image</th>
-  </tr>
+<hr>
 
-  <tr>
-    <td><%= channel.name %></td>
-    <td><%= channel.slug %></td>
-    <td><%= channel.image %></td>
-    <td><%= link_to 'Show', source_channel_path(channel.source, channel) %></td>
-    <td><%= link_to 'Edit', edit_source_channel_path(channel.source, channel) %></td>
-    <td><%= link_to 'Destroy', source_channel_path(channel.source, channel),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-</table>
+<p>
+  <strong>Name:</strong>
+  <%= channel.name %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= channel.slug %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%= channel.image %>
+</p>
+
+<p>
+  <strong>Episodes:</strong>
+  <%= link_to('View Episodes', source_channel_episodes_path(channel.source, channel)) %>
+</p>
+
+<%= link_to 'Show', source_channel_path(channel.source, channel) %> |
+<%= link_to 'Edit', edit_source_channel_path(channel.source, channel) %> |
+<%= link_to 'Destroy', source_channel_path(channel.source, channel),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>

@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get 'sources/ingest' => 'sources#ingest'
 
-  resources :sources do
-    resources :channels do
-      resources :episodes do
-        resources :captions, except: [:show]
+  resources :sources, param: :slug do
+    resources :channels, param: :slug do
+      resources :episodes, param: :slug do
+        resources :captions
       end
     end
   end

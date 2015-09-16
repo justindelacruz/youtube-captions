@@ -1,33 +1,5 @@
-<h2>Episode for <%= @channel.name %></h2>
-<p>
-  <strong>Name:</strong>
-  <%= @episode.name %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @episode.slug %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @episode.image %>
-</p>
-
-<p>
-  <strong>Date Created:</strong>
-  <%= @episode.date_created %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @episode.description %>
-</p>
-
-<p>
-  <strong>Captions:</strong>
-  <%= link_to('View', source_channel_episode_captions_path(@source, @channel, @episode)) %>
-</p>
-
+<h2><%= @source.name %> &gt; <%= @channel.name %> &gt; <%= @episode.name %></h2>
 
 <%= link_to('Back', source_channel_episodes_path(@source, @channel)) %>
+
+<%= render @channel %>
