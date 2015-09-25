@@ -4,7 +4,7 @@ class Channel < ActiveRecord::Base
   validates :source, presence: true # Requires association to be present
   validates :name, presence: true
   validates :slug, presence: true
-  validates_uniqueness_of :slug
+  validates_uniqueness_of :slug, scope: :source_id
 
   def to_param
     slug

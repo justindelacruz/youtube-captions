@@ -63,42 +63,43 @@ class CaptionsController < ApplicationController
     redirect_to source_channel_episode_captions_path(@source, @channel)
   end
 
-
   def ingest
-    @captions = []
+    source = Source.find_by slug: params[:source_slug]
+    channel = source.channels.find_by slug: params[:channel_slug]
+    episode = channel.episodes.find_by slug: params[:episode_slug]
+    username = params[:channel_slug]
 
-    api_key = 'AIzaSyALJLTKm7i61cq6SklsAqcfoo5oEn2m9q0'
-    username = 'vsauce'
-
-    youtube_api = Youtube::Api.new(api_key: api_key)
-    #upload_channel = youtube_api.get_upload_channel(username)
-    #video_ids = youtube_api.get_video_ids(upload_channel)
-
-    video_id = 'G7djoQfncRw'
-
-    if youtube_api.has_caption?(video_id)
-      youtube_captions = Youtube::Captions.new
-      srt = youtube_captions.get_captions(video_id)
-      file = SRT::File.parse(srt)
-      file.lines.each do |line|
-
-        caption = Caption.new(:text => line.text.join("\n"),
-                              :start_time => line.start_time,
-                              :end_time => line.end_time)
-
-        @captions << line.text.join("\n")
-        caption.save
-      end
-
+    if source.slug == 'youtube'
+      create_from_youtube username: username, episode: episode, video_id: episode.slug
+      redirect_to source_channel_episode_captions_path(source, channel, episode)
     else
-      puts "#{video_id} does not have an english caption"
+      render plain: "No valid source found."
     end
-
-    render :ingest
   end
 
   private
-  def caption_params
-    params.require(:caption).permit(:text, :start_time, :end_time)
-  end
+
+    def create_from_youtube(username: username, episode: episode, video_id: video_id)
+      api_key = Rails.application.secrets.google_api_key
+      youtube_api = Youtube::Api.new(api_key: api_key)
+      youtube_captions = Youtube::Captions.new
+
+      if youtube_api.video_has_caption?(video_id)
+        srt = youtube_captions.get_captions(video_id)
+        captions = []
+        SRT::File.parse(srt).lines.each do |line|
+          captions << Caption.new(:text => line.text.join("\n"),
+                                  :start_time => line.start_time,
+                                  :end_time => line.end_time,
+                                  :episode_id => episode.id)
+        end
+        Caption.import(captions)
+      else
+        puts "#{video_id} does not have an english caption"
+      end
+    end
+
+    def caption_params
+      params.require(:caption).permit(:text, :start_time, :end_time)
+    end
 end

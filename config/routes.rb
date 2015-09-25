@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'sources/ingest' => 'sources#ingest'
-
   resources :sources, param: :slug do
     resources :channels, param: :slug do
+      get 'episodes/ingest' => 'episodes#ingest'
       resources :episodes, param: :slug do
+        post 'captions/ingest' => 'captions#ingest'
         resources :captions
       end
     end

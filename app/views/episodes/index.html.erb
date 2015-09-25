@@ -8,4 +8,23 @@
   <%= link_to "Back to #{@channel.name} info", source_channel_path(@source, @channel) %>
 </p>
 
-<%= render @episodes %>
+<% @episodes.each do |episode| %>
+
+<hr>
+
+<p>
+  <b>Name:</b> <%= episode.name %>
+</p>
+
+<p>
+  <b>Slug:</b> <%= episode.slug %>
+</p>
+
+<p>
+  <b>Date created:</b> <%= episode.date_created %>
+</p>
+
+<%= link_to 'Show', source_channel_episode_path(episode.channel.source, episode.channel, episode) %> |
+<%= link_to('View Captions', source_channel_episode_captions_path(episode.channel.source, episode.channel, episode)) %>
+
+<% end %>

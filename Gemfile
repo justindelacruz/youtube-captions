@@ -20,6 +20,8 @@ gem 'google-api-client', '0.9.pre3'
 gem 'srt'
 # Complete validation of dates, times and datetimes
 gem 'jc-validates_timeliness'
+# Library for bulk inserting data using ActiveRecord.
+gem "activerecord-import", ">= 0.4.0"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -32,7 +34,7 @@ gem 'jc-validates_timeliness'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  #gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'

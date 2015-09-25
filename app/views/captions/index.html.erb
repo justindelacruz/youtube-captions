@@ -8,4 +8,17 @@
   <%= link_to "Back to #{@episode.name} info", source_channel_episode_path(@source, @channel, @episode) %>
 </p>
 
-<%= render @captions %>
+<% if @captions.empty? %>
+<p>
+  This episode has no captions. This is probably because they're not ingested yet.
+</p>
+
+<p>
+  <%= link_to source_channel_episode_captions_ingest_path(@source, @channel, @episode, @caption), method: :post do %>
+      Ingest captions from <%= @source.name %> for this episode?
+  <% end %>
+</p>
+
+<% else %>
+    <%= render @captions %>
+<% end %>

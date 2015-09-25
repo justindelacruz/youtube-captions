@@ -9,7 +9,8 @@
 </p>
 
 <p>
-  <b>Image:</b> <%= episode.image %>
+  <b>Image:</b><br />
+  <img src="<%= episode.image %>">
 </p>
 
 <p>
@@ -17,7 +18,8 @@
 </p>
 
 <p>
-  <b>Description:</b> <%= episode.description %>
+  <b>Description:</b><br />
+  <%= simple_format(episode.description) %>
 </p>
 
 <p>
@@ -25,7 +27,6 @@
   <%= link_to('View', source_channel_episode_captions_path(episode.channel.source, episode.channel, episode)) %>
 </p>
 
-<%= link_to 'Show', source_channel_episode_path(episode.channel.source, episode.channel, episode) %> |
 <%= link_to 'Edit', edit_source_channel_episode_path(episode.channel.source, episode.channel, episode) %> |
 <%= link_to 'Destroy', source_channel_episode_path(episode.channel.source, episode.channel, episode),
                    method: :delete,
